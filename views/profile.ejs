@@ -1,0 +1,75 @@
+<%- include("./includes/header.ejs") %> 
+
+<div class="flex-grow-1 container-fluid row pb-5 mt-5">
+
+    <div class="col-lg-5 col-xl-4 col-md-6 col-12 row mt-4">
+
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden ml-2">
+            <div class="px-4 pt-0 pb-4 bg-dark">
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3"><img src="<%= avatar %> " alt="..." width="130" height="130" class="rounded mb-2 avatar img-thumbnail"><button type="button" id="editProfileBtn" class="btn btn-dark btn-sm btn-block">ویرایش پروفایل</button></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-1"><%= user.fullname %></h4>
+                        <p class="small mb-4"> <i class="fa fa-dollar mr-2"></i>عضویت: رایگان</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light p-4 pr-2 d-flex justify-content-center justify-content-sm-end text-center">
+                <ul class="list-inline mt-5 mt-sm-0 mb-0">
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block"><%= urls.length %> </h5><small class="text-muted"> <i class="fa fa-link mr-1"></i>تعداد لینک</small>
+                    </li>
+                     
+                    <li class="list-inline-item ml-3">
+                        <h5 class="font-weight-bold mb-0 d-block">0</h5><small class="text-muted"> <i class="fa fa-external-link mr-1"></i>دامنه ها</small>
+                    </li>
+                    
+                </ul> 
+            </div>
+
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">لینک های اخیر</h5><a href="#" class="btn btn-sm btn-outline-secondary">همه لینک ها</a>
+                </div>
+
+                <% if (urls.length > 0) { %>
+                    <div class="urls">
+                        <ul class="list-inline">
+                        
+                            <% for(let url of urls) { %>
+                                <li class="list-inline-item mb-2 d-block">
+                                    <i class="fa fa-link ml-2"></i><a class="d-inline" href="/profile/<%= url._id %> "><%= url.cutUrl %></a>
+                                </li>
+                            <% } %>
+                                
+                        </ul>
+                    </div>
+                <% }else{ %>
+                    <h6 class="text-center text-muted">آدرس کوتاه شده ای وجود ندارد</h6>
+                <% } %>
+
+                <div class="py-4">
+                    <!-- <h5 class="mb-3">Recent posts</h5> -->
+                    <div class="p-4 bg-light rounded shadow-sm">
+                        <p class="invisible font-italic mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <ul class="list-inline small text-muted mt-3 mb-0">
+                            <li class="invisible list-inline-item"><i class="fa fa-comment-o mr-2"></i>12 Comments</li>
+                            <li class="invisible list-inline-item"><i class="fa fa-heart-o mr-2"></i>200 Likes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End profile widget -->
+    </div>
+
+    <%- include("./includes/edit-urls.ejs") %> 
+
+    <!-- edit profile -->
+    <%- include("./includes/edit-profile.ejs") %> 
+    
+</div>
+
+<%- include("./includes/footer.ejs") %> 

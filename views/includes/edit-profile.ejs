@@ -1,0 +1,28 @@
+<div class="edit_profile input-group p-5 bg-light shadow-lg rounded">
+        
+    <form action="/profile" method="post">
+        <div class="mb-3">
+            <label for="email">ایمیل</label>
+            <input class="form-control" type="email" id="email" value="<%= user.email %>" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="fullname">نام و نام خانوادگی</label>
+            <input class="form-control" type="text" name="fullname" id="fullname" value="<%= user.fullname %>">
+        </div>
+        <!-- <div class="mb-3">
+            <label for="password">رمز عبور</label>
+            <input class="form-control" type="password" name="password" id="password" value="">
+        </div> -->
+        <div class="input-group-prepend">
+            <button class="btn btn-sm btn-outline-primary" type="button" id="imageUpload">آپلود</button>
+            <div class="custom-file">
+                <input class="custom-file-input" type="file" name="" id="selectedImage">
+                <label class="custom-file-label" for="selectedImage" id="imageStatus" >ویرایش عکس پروفایل</label>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" id="" type="submit">ویرایش</button>
+    </form>
+    <button type="button" id="closeBtn" class="close close_btn">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

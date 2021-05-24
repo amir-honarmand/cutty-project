@@ -1,0 +1,31 @@
+<div id="edit-url" class="bg-white col-xl-8 col-lg-7 col-md-6 col-12 ml-2 row rounded shadow mt-4">
+  <!-- <a href="#edit-url"></a> -->
+  <div class="w-100 mx-2 my-5">
+    <h4 class="mb-3">ویرایش آدرس</h4>
+    <form class="needs-validation" action="/cut-url" method="POST" autocomplete="off">
+      <div class="row row-cols-1 row-cols-md-2">
+        <div class="col col-md-9 col-lg-8">
+          <label for="cutUrl" class="form-label">آدرس کوتاه شده</label>
+          <input type="text" name="cutUrl" id="cutUrl" readonly class="form-control" 
+            style="direction: ltr;" placeholder="" value="<%= getUrl ? getUrl.cutUrl : '' %>">
+        </div>
+          
+        <div class="col col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
+          <button type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col col-lg-10 mt-3">
+          <label for="updateUrl" class="form-label">ویرایش آدرس</label>
+          <div class="input-group has-validation" style="direction: ltr;">
+            <span class="input-group-text">cutty.ir/</span>
+            <input type="text" class="form-control" name="updateUrl" id="updateUrl" maxlength="500" required placeholder="" 
+              value="<%= updateUrl ? updateUrl : '' %>" >
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg mt-3" type="submit">ویرایش</button>
+    </form>
+  </div>
+</div>

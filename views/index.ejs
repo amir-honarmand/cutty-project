@@ -1,0 +1,36 @@
+<%- include("./includes/header.ejs") %> 
+
+  <main class="flex-grow-1">
+    <div class="masthead text-white text-center mt-5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="title mb-3 text-dark">کوتاه کننده لینک "کاتی"</h1>
+            <p class="h3 title-desc text-center mb-5 text-dark">فقط کافیه لینک رو در کادر زیر وارد کنی و روی دکمه کوتاه کن کلیک کنی</p>
+          </div>
+        </div>
+
+        <div class="row d-flex flex-row justify-content-center">
+          <%- include("./includes/messages.ejs") %> 
+        </div>
+
+        <div class="mx-auto">
+          <form action="/" method="POST" autocomplete="off">
+            <div class="form-row justify-content-center flex-row-reverse container-fluid">
+              <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 mb-2 mb-md-0">
+                <input type="text" name="url" required class="form-control shadow form-control-lg" maxlength="700" style="direction: ltr;" placeholder="Http://...">
+              </div>
+              <div class="col-sm-3 col-md-2 col-lg-2 col-xl-2">
+                <button type="submit" class="btn btn-block text-nowrap shadow btn-lg btn-primary">کوتاه کن!</button>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+    
+<%- include("./includes/footer.ejs") %> 

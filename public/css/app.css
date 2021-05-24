@@ -1,0 +1,35 @@
+@font-face {
+    font-family: shabnam;
+    src: url("../fonts/Shabnam.ttf");
+  }
+  
+  body {
+    font-family: shabnam !important;
+  }
+
+  /* header */
+  
+  nav .logo{
+    font-size: 1.7rem; 
+    padding: .7rem;
+  }
+  
+  
+  
+  
+
+  /* footer */
+  
+  footer .list-inline-item:not(:last-child) {
+    margin-right: 0;
+    margin-left: 0.5rem !important;
+  }
+  
+  footer.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  footer .desc{
+    font-size: .9rem;
+  }

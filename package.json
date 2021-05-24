@@ -1,0 +1,32 @@
+{
+  "name": "shortcut-link-project",
+  "version": "1.0.0",
+  "description": "کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "amir honarmand zade",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.4.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jalali-moment": "^3.3.10",
+    "mongoose": "^5.12.5",
+    "multer": "^1.4.2",
+    "nanoid": "^3.1.22",
+    "node-fetch": "^2.6.1",
+    "node-localstorage": "^2.1.6",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sharp": "^0.28.1",
+    "uuid": "^8.3.2",
+    "yup": "^0.32.9"
+  }
+}

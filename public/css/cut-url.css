@@ -1,0 +1,8 @@
+.container {
+    max-width: 960px;
+  }
+
+  .check{
+    color: rgb(6, 207, 6);
+    font-size: 4rem;
+  }

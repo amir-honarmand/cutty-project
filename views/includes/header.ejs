@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <% if (path !== "/profile") { %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% } %>
+  <!-- <meta name="theme-color" content="#7952b3"> -->
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico">
+  <link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-rtl.css" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="/css/font-awesome.css" rel="stylesheet">
+
+  <link href="/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/app.css">
+  
+  <% if (path=="/cut-url" ) { %>
+    <link href="/css/cut-url.css" rel="stylesheet">
+  <% } %>
+
+  <% if (path=="/index" ) { %>
+    <link href="/css/index.css" rel="stylesheet">
+  <% } %>
+
+  <% if (path == "/profile") { %>
+    <link href="/css/profile.css" rel="stylesheet">
+  <% } %>
+  
+  <title><%=pageTitle%></title>
+</head>
+
+<body class="rtl bg-light d-flex flex-column min-vh-100">
+  <!-- Navigation -->
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <i class="logo fa fa-cut bg-light shadow text-dark rounded mr-2"></i><a class="navbar-brand ml-1" href="/">کوتاه کننده لینک</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="ml-0">
+          
+        </div>
+        <ul class="navbar-nav ml-md-auto mb-md-2 mb-md-0 pl-0">
+          <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
+            <a class="btn btn-outline-light btn-sm <%= path == '/index' ? 'active' : '' %>" aria-current="page" href="/">خانه</a>
+          </li>
+
+          <% if (typeof user !== "undefined") { %>
+  
+            <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
+              <a class="btn btn-outline-light btn-sm <%= path == '/profile' ? 'active' : '' %>" href="/profile">
+                <%= user.fullname %>
+              / داشبورد</a>
+            </li>
+            <li class="nav-item ml-md-0 mt-2 mt-md-0">
+              <a class="btn btn-outline-danger btn-sm" href="/profile/logout">خروج</a>
+            </li>
+                
+          <% }else{ %>
+            <li class="nav-item ml-md-0 mt-2 mt-md-0">
+              <a class="btn btn-primary btn-sm" href="/profile/login">ورود / ثبت نام</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

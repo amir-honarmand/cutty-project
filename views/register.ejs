@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %> </title>
+    
+    <link href="/css/bootstrap-rtl.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
+</head>
+<body>
+    
+    <main class="form-signin text-center">
+        <form action="" method="POST">
+            <i style="font-size: 4rem;" class="fa fa-user-plus text-primary mb-4"></i>
+            <%- include("./includes/messages.ejs") %> 
+            <h1 class="h3 mb-3 fw-normal">ایجاد حساب کاربری</h1>
+            
+            <div class="form-floating">
+                <input required type="text" autofocus name="fullname" class="form-control" id="fullname" placeholder="نام و نام خانوادگی">
+                <label for="fullname" hidden>Email address</label>
+            </div>
+            
+            <div class="form-floating">
+                <input required type="email" name="email" class="form-control" id="email" placeholder="ایمیل">
+                <label for="email" hidden>Email address</label>
+            </div>
+            <div class="form-floating">
+                <input required type="password" name="password" class="form-control" id="password" placeholder="رمز عبور">
+                <label for="password" hidden>Password</label>
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input required type="password" name="repeatPassword" class="form-control" id="repeatPassword" placeholder="تکرار رمز عبور">
+                <label for="repeatPassword" hidden>Password</label>
+            </div>
+            
+            <button class="w-100 btn btn-lg btn-primary" type="submit">ثبت نام</button>
+            <div class="mt-3"><a href="/profile/login">ورود به حساب کاربری</a></div>
+            <!-- <p class="mt-5 mb-3 text-muted">&copy; 2021</p> -->
+        </form>
+    </main>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/js/jquery.slim.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap5.bundle.min.js"></script>
+    <!-- <script src="/js/jquery.min.js"></script> -->
+    <script src="/js/popper.min.js"></script>
+</body>
+</html>
