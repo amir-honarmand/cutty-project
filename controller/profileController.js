@@ -42,7 +42,7 @@ exports.getLogin = (req, res) => {
 // login POST----------------------------------
 exports.loginCheck = async (req,res,next)=>{
 
-    //google recaptcha verify
+    // google recaptcha verify
     if(!req.body["g-recaptcha-response"]){
         req.flash("error", "اعتبارسنجی recaptcha الزامی می باشد");
         return res.redirect("/profile/login");
@@ -167,7 +167,7 @@ exports.getProfile = async (req,res)=>{
             pageTitle: `داشبورد ${req.user.fullname} | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع`,
             path: "/profile",
             user: req.user,
-            avatar: `/uploads/${req.user.avatar}`,
+            avatar: req.user.avatar,
             urls,
             getUrl: null,
             updateUrl: null,
@@ -201,7 +201,7 @@ exports.updateProfile = async (req, res)=>{
 // upload image-------------------------------
 exports.uploadImage = (req, res)=>{
     const upload = multer({
-        limits: {fileSize: 4000000},
+        limits: {fileSize: 2000000},
         // dest: "uploads/",
         // storage,
         fileFilter,
@@ -212,7 +212,7 @@ exports.uploadImage = (req, res)=>{
             console.log(err);
             res.send(err);
         }else{
-            if (req.file){
+            if (req.file && req.user.avatar){
                 fs.unlink(`${appRoot}/public/uploads/${req.user.avatar}`, async (err)=>{
                     if(err){
                         console.log(err);
@@ -228,7 +228,15 @@ exports.uploadImage = (req, res)=>{
                         res.status(200).send("آپلود عکس موفقیت آمیز بود");
                     }
                 });
+            }else if(req.file){
+                const fileName = `${uuid()}_${req.file.originalname}`;
+                await sharp(req.file.buffer).jpeg({quality: 40}).toFile(
+                    `./public/uploads/${fileName}`
+                ).catch(err => res.send(err));
+                
+                await usersModel.updateOne({email: req.user.email},{avatar: fileName})
 
+                res.status(200).send("آپلود عکس موفقیت آمیز بود");
             }else{
                 res.send("عکسی را انتخاب کنید");
             }
