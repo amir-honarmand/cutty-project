@@ -250,6 +250,8 @@ exports.getEditUrls = async (req, res)=>{
     try {
         const urls = await urlModel.find({user: req.user.id}).sort({date: "desc"});
         const getUrl = await urlModel.findOne({_id: req.params.id});
+        req.session.cutUrl = getUrl.cutUrl;
+        
         if(!getUrl){
             return res.redirect("/404");
         }else{
