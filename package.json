@@ -4,7 +4,8 @@
   "description": "کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "amir honarmand zade",
