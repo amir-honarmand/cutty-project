@@ -246,7 +246,7 @@ exports.uploadImage = (req, res)=>{
 
 // get edit urls--------------------------------------
 exports.getEditUrls = async (req, res)=>{
-    // console.log(req.query);
+    
     try {
         const urls = await urlModel.find({user: req.user.id}).sort({date: "desc"});
         const getUrl = await urlModel.findOne({_id: req.params.id});
@@ -260,7 +260,7 @@ exports.getEditUrls = async (req, res)=>{
             pageTitle: `داشبورد ${req.user.fullname} | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع`,
             path: "/profile",
             user: req.user,
-            avatar: `/uploads/${req.user.avatar}`,
+            avatar: req.user.avatar,
             urls, 
             getUrl,
             updateUrl: getUrl.cutUrl.slice(9),
