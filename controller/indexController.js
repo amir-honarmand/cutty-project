@@ -71,7 +71,7 @@ exports.createCutLink = async (req, res) => {
         
         req.session.cutUrl = myUrl;
         console.log("in index url:", req.session.cutUrl);
-        console.log(result);
+        
         return res.redirect("/cut-url");
       }
         

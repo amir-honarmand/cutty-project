@@ -9,7 +9,7 @@ exports.getCutUrl = async (req, res) => {
   
   try {
     const cutUrl = req.session.cutUrl || "";
-console.log("cut url: ", cutUrl);
+
     const result = await urlModel.findOne({cutUrl});
     if (result) {
       // getArrUrl = cutUrl;
@@ -28,7 +28,7 @@ console.log("cut url: ", cutUrl);
       });
 
     } else res.redirect("/");
-    //
+    
   } catch (err) {
     console.log(err);
     get500(req, res);
@@ -39,7 +39,8 @@ console.log("cut url: ", cutUrl);
 
 //--------------------cutUrl POST---------------------------------------------------------
 exports.updateUrl = async (req, res) => {
-  const cutUrl = req.body.cutUrl;
+  // const cutUrl = req.body.cutUrl;
+  const cutUrl = req.session.cutUrl || "";
   try {
     await urlModel.cutUrlValidation(req.body);
     const result = await urlModel.findOne({ cutUrl });
