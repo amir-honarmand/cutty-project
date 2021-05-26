@@ -1,12 +1,12 @@
 const express = require("express");
-// const dotEnv = require("dotenv");
+const dotEnv = require("dotenv");
 const flash = require("connect-flash");
 const passport = require("passport");
 
 const path = require("path");
 
 // env config
-// dotEnv.config({ path: "./config/config.env" });
+dotEnv.config({ path: "./config/config.env" });
 
 const { connectDB } = require("./config/dbConnection");
 const session = require("./utils/session");
