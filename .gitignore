@@ -1,4 +1,4 @@
-# node_modules
-# config.env
-# scratch
+node_modules
+config.env
+scratch
 uploads

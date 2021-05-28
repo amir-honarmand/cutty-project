@@ -20,8 +20,8 @@ exports.getCutUrl = async (req, res) => {
       
       res.render("cut-url", {
         pageTitle: "لینک کوتاه شده | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
-        cutUrl,
-        updateUrl: cutUrl.slice(9),
+        result,
+        updateUrl: result.cutUrl.slice(9),
         path: "/cut-url",
         user: req.user,
         errors: [],

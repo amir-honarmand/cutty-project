@@ -1,15 +1,8 @@
-const copyFunc = () => {
-  const btnCopy = document.querySelector("#btnCopy");
-  const cutUrl = document.querySelector("#cutUrl");
-  btnCopy.addEventListener("click", () => {
-    cutUrl.select();
-    cutUrl.setSelectionRange(0, 99999); //for mobile device
-
+const copyFunc = (text) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
     document.execCommand("copy");
-    // btnCopy.setAttribute("data-toggle", "popover");
-    // btnCopy.setAttribute("data-placement", "top");
-    // btnCopy.setAttribute("title", "لینک کپی شد");
-  });
+    textArea.remove();
 };
-
-copyFunc();
