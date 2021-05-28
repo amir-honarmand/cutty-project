@@ -5,12 +5,17 @@
     <form class="needs-validation" action="/cut-url" method="POST" autocomplete="off">
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col col-md-9 col-lg-8">
-          <label for="cutUrl" class="form-label">آدرس کوتاه شده</label>
-          <a class="d-block form-control text-primary text-right" id="cutUrl" href="<%= getUrl.url %>"><%= getUrl.cutUrl %></a>
+          <label for="" class="form-label">آدرس کوتاه شده</label>
+
+          <% if (getUrl) { %>
+            <a class="d-block form-control text-primary text-right" target="_blank" id="cutUrl" href="<%= getUrl.url %>"><%= getUrl.cutUrl %></a>
+            <% }else{ %>
+              <a class="d-block form-control text-primary text-right" id="cutUrl" >برای ویرایش روی لینک مورد نظر کلیک کنید</a>
+            <%}%>
         </div>
           
         <div class="col col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
-          <button title="کپی کنید" type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+          <button title="کپی کنید" onclick="copyFunc(document.getElementById('cutUrl').innerText)" type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
         </div>
       </div>
       
