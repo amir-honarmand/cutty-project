@@ -6,12 +6,11 @@
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col col-md-9 col-lg-8">
           <label for="cutUrl" class="form-label">آدرس کوتاه شده</label>
-          <input type="text" name="cutUrl" id="cutUrl" readonly class="form-control" 
-            style="direction: ltr;" placeholder="" value="<%= getUrl ? getUrl.cutUrl : '' %>">
+          <a class="d-block form-control text-primary text-right" id="cutUrl" href="<%= getUrl.url %>"><%= getUrl.cutUrl %></a>
         </div>
           
         <div class="col col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
-          <button type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+          <button title="کپی کنید" type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
         </div>
       </div>
       

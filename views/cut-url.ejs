@@ -15,13 +15,12 @@
     <form class="needs-validation" action="/cut-url" method="POST" autocomplete="off">
       <div class="row row-cols-sm-2 row-cols-md-3">
         <div class="col-sm-10 col-md-6">
-          <label for="cutUrl" class="form-label">آدرس کوتاه شده</label>
-          <input type="text" name="cutUrl" id="cutUrl" readonly class="form-control" 
-          style="direction: ltr;" placeholder="" value="<%= cutUrl %>">
+          <label for="" class="form-label">آدرس کوتاه شده</label>
+          <a class="d-block form-control text-primary text-right" id="cutUrl" href="<%= result.url %>"><%= result.cutUrl %></a>
         </div>
           
         <div class="col-sm-2 col-md-2 d-flex flex-column justify-content-end mt-2">
-          <button type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+          <button title="کپی کنید" type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
         </div>
       </div>
       
