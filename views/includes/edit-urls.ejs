@@ -8,10 +8,11 @@
           <label for="" class="form-label">آدرس کوتاه شده</label>
 
           <% if (getUrl) { %>
-            <a class="d-block form-control text-primary text-right" target="_blank" id="cutUrl" href="<%= getUrl.url %>"><%= getUrl.cutUrl %></a>
-            <% }else{ %>
-              <a class="d-block form-control text-primary text-right" id="cutUrl" >برای ویرایش روی لینک مورد نظر کلیک کنید</a>
-            <%}%>
+            <a class="d-block form-control text-primary text-right" target="_blank" id="cutUrl" href="<%= getUrl.url %>"
+              style="direction: ltr;"><%= getUrl.cutUrl %></a>
+          <% }else{ %>
+            <a class="d-block form-control text-primary" id="cutUrl" >برای ویرایش روی لینک مورد نظر کلیک کنید</a>
+          <%}%>
         </div>
           
         <div class="col col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
