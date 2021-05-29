@@ -1,0 +1,7 @@
+# robots.txt for http://www.cutty.ir/
+
+User-agent: *
+Disallow: /profile/login/*
+Disallow: /profile/register*
+
+Sitemap: https://www.cutty.ir/sitemap.xml

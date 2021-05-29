@@ -45,6 +45,9 @@ app.use(flash()); //in req.flash | key-value pair
 app.use("/", require("./routes/index"));
 app.use("/cut-url", require("./routes/cutUrl"));
 app.use("/profile", require('./routes/profile'));
+app.get("/sitemap.xml", (req, res)=>{
+    res.sendFile(path.join(__dirname+"/sitemap.xml"));
+})
 
 // redirect
 app.use("/", getRedirect);
