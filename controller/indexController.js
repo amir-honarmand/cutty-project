@@ -2,6 +2,7 @@ const urlModel = require("../models/urlModel");
 
 const { nanoid } = require("nanoid");
 const { get500 } = require("./errorController");
+const { pageTitle } = require("../config/globalVar");
 
 
 // GET request
@@ -11,7 +12,7 @@ exports.getIndex = (req, res) => {
     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
   res.render("index", {
-    pageTitle: "کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+    pageTitle: pageTitle,
     path: "/index",
     user: req.user,
     errors: [],
@@ -87,7 +88,7 @@ exports.createCutLink = async (req, res) => {
     
     console.log("erro catch",err);
     res.render("index", {
-      pageTitle: "کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+      pageTitle: pageTitle,
       path: "/index",
       user: req.user,
       errors: err.errors || ["مشکلی پیش آمده دوباره تلاش کنید"],

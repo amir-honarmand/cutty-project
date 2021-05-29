@@ -14,6 +14,7 @@ const {storage, fileFilter} = require('../utils/upload');
 const usersModel = require("../models/usersModel");
 const urlModel = require("../models/urlModel");
 const { get500 } = require("./errorController");
+const { pageTitle } = require('../config/globalVar');
 const localStorage = new LocalStorage("./scratch");
 
 //-----------------------------------login-------------------------------------
@@ -32,7 +33,7 @@ exports.getLogin = (req, res) => {
     );
 
     res.render("login", {
-        pageTitle: "ورود به حساب کاربری | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+        pageTitle: pageTitle,
         path: "/profile/login",
         success: req.flash("success_msg"),
         errors: req.flash("error"),
@@ -99,7 +100,7 @@ exports.getRegister = (req, res) => {
     );
     
     res.render("register", {
-        pageTitle: "ثبت نام | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+        pageTitle: pageTitle,
         path: "/profile/register",
         errors: [],
     });
@@ -114,7 +115,7 @@ exports.createUser = async (req, res) => {
         const user = await usersModel.findOne({ email });
         if (user) {
         return res.render("register", {
-            pageTitle: "ثبت نام | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+            pageTitle: pageTitle,
             path: "/profile/register",
             errors: ["کاربری با این ایمیل قبلا ثبت نام کرده است"],
         });
@@ -129,7 +130,7 @@ exports.createUser = async (req, res) => {
         console.log(err);
 
         res.render("register", {
-            pageTitle: "ثبت نام | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+            pageTitle: pageTitle,
             path: "/profile/register",
             errors: err.errors,
         });
@@ -164,7 +165,7 @@ exports.getProfile = async (req,res)=>{
         );
         
         res.render("profile", {
-            pageTitle: `داشبورد ${req.user.fullname} | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع`,
+            pageTitle: `داشبورد ${req.user.fullname} ${pageTitle}`,
             path: "/profile",
             user: req.user,
             avatar: req.user.avatar,
@@ -259,7 +260,7 @@ exports.getEditUrls = async (req, res)=>{
         }
         
         res.render("profile", {
-            pageTitle: `داشبورد ${req.user.fullname} | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع`,
+            pageTitle: `داشبورد ${req.user.fullname} ${pageTitle}`,
             path: "/profile",
             user: req.user,
             avatar: req.user.avatar,

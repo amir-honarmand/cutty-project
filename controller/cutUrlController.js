@@ -1,3 +1,4 @@
+const { pageTitle } = require("../config/globalVar");
 const urlModel = require("../models/urlModel");
 const { get404, get500 } = require("./errorController");
 
@@ -19,7 +20,7 @@ exports.getCutUrl = async (req, res) => {
       );
       
       res.render("cut-url", {
-        pageTitle: "لینک کوتاه شده | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+        pageTitle: pageTitle,
         result,
         updateUrl: result.cutUrl.slice(9),
         path: "/cut-url",
@@ -80,7 +81,7 @@ exports.updateUrl = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.render("cut-url", {
-      pageTitle: "لینک کوتاه شده | کوتاه کننده لینک کاتی | کوتاه کننده لینک ساده و سریع",
+      pageTitle: pageTitle,
       cutUrl,
       updateUrl: cutUrl.slice(9),
       path: "/cut-url",
