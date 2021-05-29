@@ -6,3 +6,9 @@
     color: rgb(6, 207, 6);
     font-size: 4rem;
   }
+
+#statsBtn{
+  font-size: 1.1rem;
+  padding-top: .7rem;
+  padding-bottom: .7rem;
+}
