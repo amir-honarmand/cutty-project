@@ -59,13 +59,16 @@
         </div>
         <ul class="navbar-nav ml-md-auto mb-md-2 mb-md-0 pl-0">
           <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
-            <a class="btn btn-outline-light btn-sm <%= path == '/index' ? 'active' : '' %>" aria-current="page" href="/">خانه</a>
+            <a class="btn btn-outline-light btn-sm <%= path === '/index' ? 'active' : '' %>" aria-current="page" href="/">خانه</a>
+          </li>
+          <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
+            <a class="btn btn-outline-light btn-sm <%= path === '/stats' ? 'active' : '' %>" aria-current="page" href="/stats">آمار بازدید</a>
           </li>
 
           <% if (typeof user !== "undefined") { %>
   
             <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
-              <a class="btn btn-outline-light btn-sm <%= path == '/profile' ? 'active' : '' %>" href="/profile">
+              <a class="btn btn-outline-light btn-sm <%= path === '/profile' ? 'active' : '' %>" href="/profile">
                 <%= user.fullname %>
               / داشبورد</a>
             </li>

@@ -1,12 +1,12 @@
 const express = require("express");
-// const dotEnv = require("dotenv");
+const dotEnv = require("dotenv");
 const flash = require("connect-flash");
 const passport = require("passport");
 
 const path = require("path");
 
 // env config
-// dotEnv.config({ path: "./config/config.env" });
+dotEnv.config({ path: "./config/config.env" });
 
 const { connectDB } = require("./config/dbConnection");
 const session = require("./utils/session");
@@ -45,6 +45,7 @@ app.use(flash()); //in req.flash | key-value pair
 app.use("/", require("./routes/index"));
 app.use("/cut-url", require("./routes/cutUrl"));
 app.use("/profile", require('./routes/profile'));
+app.use("/stats", require('./routes/stats'));
 app.get("/sitemap.xml", (req, res)=>{
     res.sendFile(path.join(__dirname+"/sitemap.xml"));
 })
