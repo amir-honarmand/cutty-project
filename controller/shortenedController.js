@@ -2,18 +2,18 @@ const { pageTitle } = require("../config/globalVar");
 const urlModel = require("../models/urlModel");
 const { get404, get500 } = require("./errorController");
 
-//--------------------cutUrl GET---------------------------------------------------------
+//--------------------shortened GET---------------------------------------------------------
 
-exports.getCutUrl = async (req, res) => {
+exports.getshortened = async (req, res) => {
   // let result;
   // let getArrUrl = [];
   
   try {
-    const cutUrl = req.session.cutUrl || "";
+    const shortened = req.session.shortened || "";
 
-    const result = await urlModel.findOne({cutUrl});
+    const result = await urlModel.findOne({shortened});
     if (result) {
-      // getArrUrl = cutUrl;
+      // getArrUrl = shortened;
       res.set(
         "Cache-Control",
         "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
@@ -22,7 +22,7 @@ exports.getCutUrl = async (req, res) => {
       res.render("shortened", {
         pageTitle: pageTitle,
         result,
-        updateUrl: result.cutUrl.slice(9),
+        updateUrl: result.shortened.slice(9),
         path: "/shortened",
         user: req.user,
         errors: [],
@@ -38,13 +38,13 @@ exports.getCutUrl = async (req, res) => {
   
 };
 
-//--------------------cutUrl POST---------------------------------------------------------
+//--------------------shortened POST---------------------------------------------------------
 exports.updateUrl = async (req, res) => {
-  // const cutUrl = req.body.cutUrl;
-  const cutUrl = req.session.cutUrl || "";
+  // const shortened = req.body.shortened;
+  const shortened = req.session.shortened || "";
   try {
-    await urlModel.cutUrlValidation(req.body);
-    const result = await urlModel.findOne({ cutUrl });
+    await urlModel.shortenedValidation(req.body);
+    const result = await urlModel.findOne({ shortened });
 
     if (result) {
 
@@ -54,8 +54,8 @@ exports.updateUrl = async (req, res) => {
       }
       
       await urlModel.updateOne(
-        { cutUrl},
-        { cutUrl: `${process.env.MY_URL}${req.body.updateUrl}`, user },
+        { shortened},
+        { shortened: `${process.env.MY_URL}${req.body.updateUrl}`, user },
         {},
         (err) => {
           console.log(err);
@@ -71,8 +71,8 @@ exports.updateUrl = async (req, res) => {
         }
       );
 
-      if (result.cutUrl) {
-        req.session.cutUrl = `${process.env.MY_URL}${req.body.updateUrl}`;
+      if (result.shortened) {
+        req.session.shortened = `${process.env.MY_URL}${req.body.updateUrl}`;
         res.redirect("/shortened");
       }
     } else {
@@ -82,8 +82,8 @@ exports.updateUrl = async (req, res) => {
     console.log(err);
     res.render("shortened", {
       pageTitle: pageTitle,
-      cutUrl,
-      updateUrl: cutUrl.slice(9),
+      shortened,
+      updateUrl: shortened.slice(9),
       path: "/shortened",
       user: req.user,
       errors: err.errors,
@@ -98,7 +98,7 @@ exports.getRedirect = async (req, res) => {
   const myUrl = process.env.MY_URL;
   
   try {
-    const urlDb = await urlModel.findOne({ cutUrl: `${myUrl}${getUrl}` });
+    const urlDb = await urlModel.findOne({ shortened: `${myUrl}${getUrl}` });
     if (urlDb) {
       // res.end(urlDb.url);
 

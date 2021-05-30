@@ -42,7 +42,7 @@
                                 <% if(urls[i]){ %>
                                     <% let url = urls[i] %>
                                     <li class="list-inline-item mb-2 d-block">
-                                        <i class="fa fa-link ml-2"></i><a class="d-inline" href="/dashboard/<%= url._id %>"><%= url.cutUrl %></a>
+                                        <i class="fa fa-link ml-2"></i><a class="d-inline" href="/dashboard/<%= url._id %>"><%= url.shortened %></a>
                                     </li>
                                 <% } %>
                             <% } %>

@@ -153,10 +153,10 @@ exports.getLogout = (req,res)=>{
 exports.getDashboard = async (req,res)=>{
 
     try {
-        const urls = await urlModel.find({user: req.user.id}).sort({date: "desc"});
+        const urls = await urlModel.find({user: req.user.id}).sort({createAt: "desc"});
 
         // for(let url of urls){
-        //     url.cutUrl = url.cutUrl.slice(7);
+        //     url.shortened = url.shortened.slice(7);
         // };
         
         res.set(
@@ -249,9 +249,9 @@ exports.uploadImage = (req, res)=>{
 exports.getEditUrls = async (req, res)=>{
     
     try {
-        const urls = await urlModel.find({user: req.user.id}).sort({date: "desc"});
+        const urls = await urlModel.find({user: req.user.id}).sort({createAt: "desc"});
         const getUrl = await urlModel.findOne({_id: req.params.id});
-        req.session.cutUrl = getUrl.cutUrl;
+        req.session.shortened = getUrl.shortened;
         
         if(!getUrl){
             return res.redirect("/404");
@@ -266,7 +266,7 @@ exports.getEditUrls = async (req, res)=>{
             avatar: req.user.avatar,
             urls, 
             getUrl,
-            updateUrl: getUrl.cutUrl.slice(9),
+            updateUrl: getUrl.shortened.slice(9),
         });
         
     } catch (err) {

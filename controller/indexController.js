@@ -38,7 +38,7 @@ exports.createCutLink = async (req, res) => {
     //create into db
     urlModel.create({
       url: req.body.url,
-      cutUrl: myUrl,
+      shortened: myUrl,
       user,
     },async (err, result)=>{
       
@@ -51,17 +51,17 @@ exports.createCutLink = async (req, res) => {
           num++;
   
           myUrl = `${process.env.MY_URL}${nanoid(num)}`;
-          const isFind = await urlModel.findOne({cutUrl: myUrl});
+          const isFind = await urlModel.findOne({shortened: myUrl});
           if (!isFind) {
   
             await urlModel.create({
               url: req.body.url,
-              cutUrl: myUrl,
+              shortened: myUrl,
               user,
             });
             
-            req.session.cutUrl = myUrl;
-            console.log("in index url:", req.session.cutUrl);
+            req.session.shortened = myUrl;
+            console.log("in index url:", req.session.shortened);
             return res.redirect("/shortened");    
             
           };
@@ -70,8 +70,8 @@ exports.createCutLink = async (req, res) => {
 
       } else if(result) {
         
-        req.session.cutUrl = myUrl;
-        console.log("in index url:", req.session.cutUrl);
+        req.session.shortened = myUrl;
+        console.log("in index url:", req.session.shortened);
         
         return res.redirect("/shortened");
       }

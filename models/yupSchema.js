@@ -24,7 +24,7 @@ exports.schemaForUrl = yup.object().shape({
 
 });
 
-exports.schemaForCutUrl = yup.object().shape({
-  cutUrl: yup.string().required("آدرسی وارد نشده است").max(20, "آدرس وارد شده نباید بیشتر از 20 کاراکتر باشد"),
+exports.schemaForShortened = yup.object().shape({
+  shortened: yup.string().required("آدرسی وارد نشده است").max(20, "آدرس وارد شده نباید بیشتر از 20 کاراکتر باشد"),
 
 });

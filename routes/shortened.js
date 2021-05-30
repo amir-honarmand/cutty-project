@@ -5,7 +5,7 @@ const shortenedController = require("../controller/shortenedController");
 const router = new Router();
 
 // GET
-router.get("/", shortenedController.getCutUrl);
+router.get("/", shortenedController.getshortened);
 
 // POST
 router.post("/", shortenedController.updateUrl);

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { schemaForUrl, schemaForCutUrl } = require("./yupSchema");
+const { schemaForUrl, schemaForShortened } = require("./yupSchema");
 
 const urlSchema = new mongoose.Schema({
   url: {
@@ -9,7 +9,7 @@ const urlSchema = new mongoose.Schema({
     maxlength: 700,
   },
 
-  cutUrl: {
+  shortened: {
     type: String,
     required: true,
     trim: true,
@@ -27,15 +27,38 @@ const urlSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  totalVisits: {
+    type: Number,
+    default: 0,
+  },
+
+  todayVisits: {
+    type: Number,
+    default: 0,
+  },
+
+  devices: {
+    type: String,
+  },
+
+  os: {
+    type: String,
+  },
+
+  browser: {
+    type: String,
+  },
+  
 });
 
 urlSchema.statics.urlValidation = function(body){
   return schemaForUrl.validate(body, {abortEarly: false});
 };
 
-urlSchema.statics.cutUrlValidation = function(body){
-  body.cutUrl = body.updateUrl;
-  return schemaForCutUrl.validate(body , {abortEarly: false});
+urlSchema.statics.shortenedValidation = function(body){
+  body.shortened = body.updateUrl;
+  return schemaForShortened.validate(body , {abortEarly: false});
 };
 
 module.exports = mongoose.model("url", urlSchema);
