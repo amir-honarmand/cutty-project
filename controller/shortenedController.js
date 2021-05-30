@@ -4,7 +4,7 @@ const { get404, get500 } = require("./errorController");
 
 //--------------------shortened GET---------------------------------------------------------
 
-exports.getshortened = async (req, res) => {
+exports.getShortened = async (req, res) => {
   // let result;
   // let getArrUrl = [];
   
@@ -100,8 +100,11 @@ exports.getRedirect = async (req, res) => {
   try {
     const urlDb = await urlModel.findOne({ shortened: `${myUrl}${getUrl}` });
     if (urlDb) {
-      // res.end(urlDb.url);
-
+      const totalVisits = urlDb.totalVisits + 1;
+      await urlModel.updateOne({shortened: urlDb.shortened}, {totalVisits});
+      
+      // console.log("total ", totalVisits);
+      
       res.redirect(urlDb.url);
     } else {
       get404(req,res);

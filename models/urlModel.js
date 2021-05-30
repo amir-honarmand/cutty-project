@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const { schemaForUrl, schemaForShortened } = require("./yupSchema");
 
 const urlSchema = new mongoose.Schema({
@@ -36,18 +37,6 @@ const urlSchema = new mongoose.Schema({
   todayVisits: {
     type: Number,
     default: 0,
-  },
-
-  devices: {
-    type: String,
-  },
-
-  os: {
-    type: String,
-  },
-
-  browser: {
-    type: String,
   },
   
 });
