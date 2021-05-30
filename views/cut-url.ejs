@@ -14,7 +14,7 @@
     <!-- <h4 class="mb-3">ویرایش آدرس</h4> -->
     <form class="needs-validation" action="/cut-url" method="POST" autocomplete="off">
       <div class="row row-cols-sm-2 row-cols-md-3">
-        <div class="col-sm-9 col-md-6">
+        <div class="col-sm-9 col-md-5 col-lg-6">
           <label for="" class="form-label">آدرس کوتاه شده</label>
           <div class="row row-cols-2 form-control align-items-center d-flex h-auto w-auto m-0">
             <a class="col-10 text-primary text-right" target="_blank" id="cutUrl" href="<%= result.url %>"
@@ -23,8 +23,9 @@
           </div>
         </div>
           
-        <div class="col-sm-3 col-md-2 d-flex flex-column justify-content-end mt-2">
-          <a href="/stats" id="statsBtn" title="مشاهده آمار بازدید لینک" class="btn d-flex align-items-center justify-content-center shadow btn-primary">آمار بازدید</a>
+        <div class="col-sm-3 col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
+          <a href="/stats" id="statsBtn" title="مشاهده آمار بازدید لینک" 
+            class="btn d-flex align-items-center justify-content-center shadow btn-primary text-nowrap"><%- include("./others/analytics-icon.ejs") %>آمار بازدید</a>
         </div>
       </div>
       
