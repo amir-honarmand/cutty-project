@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <% if (path !== "/profile") { %>
+  <% if (path !== "/dashboard") { %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% } %>
   <meta name=keywords content="کوتاه کننده لینک, کوتاه کننده آدرس, لینک کوتاه کن، کوتاه کردن لینک، آمار بازدید لینک" />
@@ -27,16 +27,16 @@
   <link href="/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/app.css">
   
-  <% if (path=="/cut-url" ) { %>
-    <link href="/css/cut-url.css" rel="stylesheet">
+  <% if (path=="/shortened" ) { %>
+    <link href="/css/shortened.css" rel="stylesheet">
   <% } %>
 
   <% if (path=="/index" ) { %>
     <link href="/css/index.css" rel="stylesheet">
   <% } %>
 
-  <% if (path == "/profile") { %>
-    <link href="/css/profile.css" rel="stylesheet">
+  <% if (path == "/dashboard") { %>
+    <link href="/css/dashboard.css" rel="stylesheet">
   <% } %>
   
   <title><%=pageTitle%></title>
@@ -68,17 +68,17 @@
           <% if (typeof user !== "undefined") { %>
   
             <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
-              <a class="btn btn-outline-light btn-sm <%= path === '/profile' ? 'active' : '' %>" href="/profile">
+              <a class="btn btn-outline-light btn-sm <%= path === '/dashboard' ? 'active' : '' %>" href="/dashboard">
                 <%= user.fullname %>
               / داشبورد</a>
             </li>
             <li class="nav-item ml-md-0 mt-2 mt-md-0">
-              <a class="btn btn-outline-danger btn-sm" href="/profile/logout">خروج</a>
+              <a class="btn btn-outline-danger btn-sm" href="/dashboard/logout">خروج</a>
             </li>
                 
           <% }else{ %>
             <li class="nav-item ml-md-0 mt-2 mt-md-0">
-              <a class="btn btn-primary btn-sm" href="/profile/login">ورود / ثبت نام</a>
+              <a class="btn btn-primary btn-sm" href="/dashboard/login">ورود / ثبت نام</a>
             </li>
           <% } %>
         </ul>

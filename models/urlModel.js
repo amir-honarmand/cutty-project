@@ -23,7 +23,7 @@ const urlSchema = new mongoose.Schema({
     ref: 'user',
   },
   
-  date: {
+  createAt: {
     type: Date,
     default: Date.now,
   },

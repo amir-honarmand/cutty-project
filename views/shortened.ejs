@@ -1,0 +1,51 @@
+
+<%- include("./includes/header.ejs") %> 
+    
+<div class="flex-grow-1 container pb-5 mt-5">
+  <div class="py-5 text-center">
+    <i class="d-block mx-auto mb-4 fa fa-check-circle check"></i>
+    <h2>آدرس کوتاه شد</h2>
+    <div class="top_alert alert alert-success d-inline-block px-5 lead mt-3 text-left" role="alert">
+      <i class="fa fa-arrow-circle-left"></i> اکنون می توانید از آدرس کوتاه شده استفاده نمایید<br>
+      <i class="fa fa-arrow-circle-left"></i> در صورتی که در سایت عضو باشید، می توانید آدرس های خود را مدیریت کنید<br>
+      <i class="fa fa-arrow-circle-left"></i> مشاهده آمار بازدید لینک همیشه در درسترس خواهد بود
+    </div>
+    <%- include("./includes/messages.ejs") %> 
+  </div>
+  
+  <div>
+    <!-- <h4 class="mb-3">ویرایش آدرس</h4> -->
+    <form class="needs-validation" action="/shortened" method="POST" autocomplete="off">
+      <div class="row row-cols-sm-2 row-cols-md-3">
+        <div class="col-sm-9 col-md-5 col-lg-6">
+          <label for="" class="form-label">آدرس کوتاه شده</label>
+          <div class="row row-cols-2 form-control align-items-center d-flex h-auto w-auto m-0">
+            <a class="col-10 text-primary text-right" target="_blank" id="cutUrl" href="<%= result.url %>"
+              style="direction: ltr;"><%= result.cutUrl %></a>
+            <button title="کپی کنید" onclick="copyFunc(document.getElementById('cutUrl').innerText)" type="button" id="btnCopy" class="col-2 btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+          </div>
+        </div>
+          
+        <div class="col-sm-3 col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
+          <a href="/stats" id="statsBtn" title="مشاهده آمار بازدید لینک" 
+            class="btn d-flex align-items-center justify-content-center shadow btn-primary text-nowrap"><%- include("./others/analytics-icon.ejs") %>آمار بازدید</a>
+        </div>
+      </div>
+      
+      <div class="row row-cols-md-3">
+        <div class="col col-md-8 mt-3">
+          <label for="updateUrl" class="form-label">ویرایش آدرس</label>
+          <div class="input-group has-validation" style="direction: ltr;">
+            <span class="input-group-text">cutty.ir/</span>
+            <input type="text" pattern="[a-zA-Z0-9._%+-]+" title="لطفا از کاراکترهای مجاز استفاده کنید" class="form-control" name="updateUrl" id="updateUrl" maxlength="20" required placeholder="" 
+            value="<%= updateUrl %>" >
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg mt-3" type="submit">ویرایش</button>
+    </form>
+  </div>
+  
+</div>
+ 
+<%- include("./includes/footer.ejs") %> 

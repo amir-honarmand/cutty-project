@@ -10,7 +10,7 @@ dotEnv.config({ path: "./config/config.env" });
 
 const { connectDB } = require("./config/dbConnection");
 const session = require("./utils/session");
-const { getRedirect } = require("./controller/cutUrlController");
+const { getRedirect } = require("./controller/shortenedController");
 
 const app = express();
 
@@ -43,8 +43,8 @@ app.use(flash()); //in req.flash | key-value pair
 
 // routes
 app.use("/", require("./routes/index"));
-app.use("/cut-url", require("./routes/cutUrl"));
-app.use("/profile", require('./routes/profile'));
+app.use("/shortened", require("./routes/shortened"));
+app.use("/dashboard", require('./routes/dashboard'));
 app.use("/stats", require('./routes/stats'));
 app.get("/sitemap.xml", (req, res)=>{
     res.sendFile(path.join(__dirname+"/sitemap.xml"));

@@ -62,7 +62,7 @@ exports.createCutLink = async (req, res) => {
             
             req.session.cutUrl = myUrl;
             console.log("in index url:", req.session.cutUrl);
-            return res.redirect("/cut-url");    
+            return res.redirect("/shortened");    
             
           };
           
@@ -73,7 +73,7 @@ exports.createCutLink = async (req, res) => {
         req.session.cutUrl = myUrl;
         console.log("in index url:", req.session.cutUrl);
         
-        return res.redirect("/cut-url");
+        return res.redirect("/shortened");
       }
         
       if(err && err.code !== 11000) {
