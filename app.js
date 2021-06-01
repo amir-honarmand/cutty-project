@@ -2,6 +2,7 @@ const express = require("express");
 const dotEnv = require("dotenv");
 const flash = require("connect-flash");
 const passport = require("passport");
+const userAgent = require('express-useragent');
 
 const path = require("path");
 
@@ -13,6 +14,9 @@ const session = require("./utils/session");
 const { getRedirect } = require("./controller/shortenedController");
 
 const app = express();
+
+//useragent
+app.use(userAgent.express());
 
 //database connection
 connectDB();

@@ -1,4 +1,7 @@
 const urlModel = require("../models/urlModel");
+const browserModel = require('../models/seprationModel/browserModel');
+const devicesModel = require('../models/seprationModel/devicesModel');
+const osModel = require('../models/seprationModel/osModel');
 
 const { nanoid } = require("nanoid");
 const { get500 } = require("./errorController");
@@ -54,12 +57,16 @@ exports.createCutLink = async (req, res) => {
           const isFind = await urlModel.findOne({shortened: myUrl});
           if (!isFind) {
   
-            await urlModel.create({
+            const result = await urlModel.create({
               url: req.body.url,
               shortened: myUrl,
               user,
             });
-            
+
+            await browserModel.create({url: result.id});
+            await devicesModel.create({url: result.id});
+            await osModel.create({url: result.id});    
+
             req.session.shortened = myUrl;
             console.log("in index url:", req.session.shortened);
             return res.redirect("/shortened");    
@@ -69,10 +76,12 @@ exports.createCutLink = async (req, res) => {
         };
 
       } else if(result) {
+        await browserModel.create({url: result.id});
+        await devicesModel.create({url: result.id});
+        await osModel.create({url: result.id});
         
         req.session.shortened = myUrl;
         console.log("in index url:", req.session.shortened);
-        
         return res.redirect("/shortened");
       }
         

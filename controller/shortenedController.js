@@ -1,5 +1,8 @@
 const { pageTitle } = require("../config/globalVar");
 const urlModel = require("../models/urlModel");
+const browserModel = require('../models/seprationModel/browserModel');
+const devicesModel = require('../models/seprationModel/devicesModel');
+const osModel = require('../models/seprationModel/osModel');
 const { get404, get500 } = require("./errorController");
 
 //--------------------shortened GET---------------------------------------------------------
@@ -100,10 +103,50 @@ exports.getRedirect = async (req, res) => {
   try {
     const urlDb = await urlModel.findOne({ shortened: `${myUrl}${getUrl}` });
     if (urlDb) {
-      const totalVisits = urlDb.totalVisits + 1;
-      await urlModel.updateOne({shortened: urlDb.shortened}, {totalVisits});
+      await urlModel.updateOne({_id: urlDb.id}, {totalVisits: urlDb.totalVisits + 1});
       
-      // console.log("total ", totalVisits);
+      const browsers = await browserModel.findOne({url: urlDb.id});
+      const devices = await devicesModel.findOne({url: urlDb.id});
+      const os = await osModel.findOne({url: urlDb.id});
+
+      //browser populate
+      if(req.useragent.isChrome) {
+        await browserModel.updateOne({url: urlDb.id}, {chrome : browsers.chrome + 1});
+        
+      }else if(req.useragent.isFirefox) {
+        await browserModel.updateOne({url: urlDb.id}, {firefox: browsers.firefox + 1});
+
+      }else if(req.useragent.isSafari){
+        await browserModel.updateOne({url: urlDb.id}, {safari: browsers.safari + 1});
+
+      }else if(req.useragent.isEdge){
+        await browserModel.updateOne({url: urlDb.id}, {edge: browsers.edge + 1});
+      };
+
+      //devices populate
+      if(req.useragent.isDesktop){
+        await devicesModel.updateOne({url: urlDb.id}, {desktop: devices.desktop + 1});
+
+      }else if(req.useragent.isMobile){
+        await devicesModel.updateOne({url: urlDb.id}, {mobile: devices.mobile + 1});
+      };
+
+      //os populate
+      if(req.useragent.isWindows){
+        await osModel.updateOne({url: urlDb.id}, {windows: os.windows + 1});
+
+      }else if(req.useragent.isMac){
+        await osModel.updateOne({url: urlDb.id}, {mac: os.mac + 1});
+
+      }else if(req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
+        await osModel.updateOne({url: urlDb.id}, {ios: os.ios + 1});
+        
+      }else if(req.useragent.isAndroid || req.useragent.isAndroidNative){
+        await osModel.updateOne({url: urlDb.id}, {android: os.android + 1});
+        
+      }
+
+      // console.log("user agnet ", req.useragent);
       
       res.redirect(urlDb.url);
     } else {
