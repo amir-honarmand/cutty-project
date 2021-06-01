@@ -22,10 +22,10 @@
           <div class="row row-cols-2 form-control align-items-center d-flex h-auto w-auto m-0">
             <a class="col-10 text-primary text-right" target="_blank" id="shortened" href="<%= result.url %>"
               style="direction: ltr;"><%= result.shortened %></a>
-            <button title="کپی کنید" onclick="copyFunc(document.getElementById('shortened').innerText)" type="button" id="btnCopy" class="col-2 btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="کپی کنید" onclick="copyFunc(document.getElementById('shortened').innerText)" type="button" id="btnCopy" class="col-2 btn shadow btn-primary"><i class="fa fa-copy"></i></button>
           </div>
         </div>
-          
+      
         <div class="col-sm-3 col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
           <a href="/stats" id="statsBtn" title="مشاهده آمار بازدید لینک" 
             class="btn d-flex align-items-center justify-content-center shadow btn-primary text-nowrap"><%- include("./others/analytics-icon.ejs") %>آمار بازدید</a>
