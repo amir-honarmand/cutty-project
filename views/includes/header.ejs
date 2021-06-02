@@ -27,6 +27,7 @@
   <link href="/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/app.css">
   
+  
   <% if (path=="/shortened" ) { %>
     <link href="/css/shortened.css" rel="stylesheet">
   <% } %>
@@ -37,6 +38,10 @@
 
   <% if (path == "/dashboard") { %>
     <link href="/css/dashboard.css" rel="stylesheet">
+  <% } %>
+
+  <% if (path == "/stats") { %>
+    <link rel="stylesheet" href="/css/stats.css">
   <% } %>
   
   <title><%=pageTitle%></title>
