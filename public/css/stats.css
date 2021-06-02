@@ -1,0 +1,10 @@
+.url_id{
+    width: 20rem;
+}
+
+@media (max-width: 576px) {
+    .url_id{
+        width: 11rem;
+    }
+    
+};
