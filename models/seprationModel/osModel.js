@@ -5,10 +5,10 @@ const osSchema = new mongoose.Schema({
     mac: {type: Number, default: 0},
     ios: {type: Number, default: 0},
     android: {type: Number, default: 0},
-    url: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'url',
-    }
+    urlId: {
+        type: String,
+        unique: true,
+    },
 });
 
 module.exports = mongoose.model("os", osSchema);

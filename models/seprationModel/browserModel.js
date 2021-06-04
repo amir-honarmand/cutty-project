@@ -5,10 +5,10 @@ const browserSchema = new mongoose.Schema({
     firefox: {type: Number, default: 0},
     safari: {type: Number, default: 0},
     edge: {type: Number, default: 0},
-    url: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'url',
-    }
+    urlId: {
+        type: String,
+        unique: true,
+    },
 });
 
 module.exports = mongoose.model("browser", browserSchema);

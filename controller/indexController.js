@@ -30,6 +30,8 @@ exports.createCutLink = async (req, res) => {
     await urlModel.urlValidation(req.body);
 
     let myUrl = `${process.env.MY_URL}${nanoid(5)}`;
+    const urlId = nanoid(10);
+
     // const myUrl = `${myUrlArr[0]}${myUrlArr[1]}${myUrlArr[2]}`;
     // let randomId = nanoid(10);
     // myUrl.push(nanoid(10));
@@ -43,6 +45,7 @@ exports.createCutLink = async (req, res) => {
       url: req.body.url,
       shortened: myUrl,
       user,
+      urlId
     },async (err, result)=>{
       
       if (err && err.code === 11000) {
@@ -61,11 +64,12 @@ exports.createCutLink = async (req, res) => {
               url: req.body.url,
               shortened: myUrl,
               user,
+              urlId
             });
 
-            await browserModel.create({url: result.id});
-            await devicesModel.create({url: result.id});
-            await osModel.create({url: result.id});    
+            await browserModel.create({urlId: result.urlId});
+            await devicesModel.create({urlId: result.urlId});
+            await osModel.create({urlId: result.urlId});    
 
             req.session.shortened = myUrl;
             console.log("in index url:", req.session.shortened);
@@ -76,9 +80,11 @@ exports.createCutLink = async (req, res) => {
         };
 
       } else if(result) {
-        await browserModel.create({url: result.id});
-        await devicesModel.create({url: result.id});
-        await osModel.create({url: result.id});
+        await browserModel.create({urlId: result.urlId});
+        await devicesModel.create({urlId: result.urlId});
+        await osModel.create({urlId: result.urlId});
+        
+        console.log(urlId);
         
         req.session.shortened = myUrl;
         console.log("in index url:", req.session.shortened);

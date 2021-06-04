@@ -103,46 +103,46 @@ exports.getRedirect = async (req, res) => {
   try {
     const urlDb = await urlModel.findOne({ shortened: `${myUrl}${getUrl}` });
     if (urlDb) {
-      await urlModel.updateOne({_id: urlDb.id}, {totalVisits: urlDb.totalVisits + 1});
+      await urlModel.updateOne({urlId: urlDb.urlId}, {totalVisits: urlDb.totalVisits + 1});
       
-      const browsers = await browserModel.findOne({url: urlDb.id});
-      const devices = await devicesModel.findOne({url: urlDb.id});
-      const os = await osModel.findOne({url: urlDb.id});
+      const browsers = await browserModel.findOne({urlId: urlDb.urlId});
+      const devices = await devicesModel.findOne({urlId: urlDb.urlId});
+      const os = await osModel.findOne({urlId: urlDb.urlId});
 
       //browser populate
       if(req.useragent.isChrome) {
-        await browserModel.updateOne({url: urlDb.id}, {chrome : browsers.chrome + 1});
+        await browserModel.updateOne({urlId: urlDb.urlId}, {chrome : browsers.chrome + 1});
         
       }else if(req.useragent.isFirefox) {
-        await browserModel.updateOne({url: urlDb.id}, {firefox: browsers.firefox + 1});
+        await browserModel.updateOne({urlId: urlDb.urlId}, {firefox: browsers.firefox + 1});
 
       }else if(req.useragent.isSafari){
-        await browserModel.updateOne({url: urlDb.id}, {safari: browsers.safari + 1});
+        await browserModel.updateOne({urlId: urlDb.urlId}, {safari: browsers.safari + 1});
 
       }else if(req.useragent.isEdge){
-        await browserModel.updateOne({url: urlDb.id}, {edge: browsers.edge + 1});
+        await browserModel.updateOne({urlId: urlDb.urlId}, {edge: browsers.edge + 1});
       };
 
       //devices populate
       if(req.useragent.isDesktop){
-        await devicesModel.updateOne({url: urlDb.id}, {desktop: devices.desktop + 1});
+        await devicesModel.updateOne({urlId: urlDb.urlId}, {desktop: devices.desktop + 1});
 
       }else if(req.useragent.isMobile){
-        await devicesModel.updateOne({url: urlDb.id}, {mobile: devices.mobile + 1});
+        await devicesModel.updateOne({urlId: urlDb.urlId}, {mobile: devices.mobile + 1});
       };
 
       //os populate
       if(req.useragent.isWindows){
-        await osModel.updateOne({url: urlDb.id}, {windows: os.windows + 1});
+        await osModel.updateOne({urlId: urlDb.urlId}, {windows: os.windows + 1});
 
       }else if(req.useragent.isMac){
-        await osModel.updateOne({url: urlDb.id}, {mac: os.mac + 1});
+        await osModel.updateOne({urlId: urlDb.urlId}, {mac: os.mac + 1});
 
       }else if(req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
-        await osModel.updateOne({url: urlDb.id}, {ios: os.ios + 1});
+        await osModel.updateOne({urlId: urlDb.urlId}, {ios: os.ios + 1});
         
       }else if(req.useragent.isAndroid || req.useragent.isAndroidNative){
-        await osModel.updateOne({url: urlDb.id}, {android: os.android + 1});
+        await osModel.updateOne({urlId: urlDb.urlId}, {android: os.android + 1});
         
       }
 

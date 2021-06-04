@@ -38,6 +38,11 @@ const urlSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+
+  urlId: {
+    type: String,
+    unique: true,
+  },
   
 });
 
