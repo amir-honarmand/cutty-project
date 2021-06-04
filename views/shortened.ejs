@@ -8,7 +8,8 @@
     <div class="top_alert alert alert-success d-inline-block px-5 lead mt-3 text-left" role="alert">
       <i class="fa fa-arrow-circle-left"></i> اکنون می توانید از آدرس کوتاه شده استفاده نمایید<br>
       <i class="fa fa-arrow-circle-left"></i> در صورتی که در سایت عضو باشید، می توانید آدرس های خود را مدیریت کنید<br>
-      <i class="fa fa-arrow-circle-left"></i> مشاهده آمار بازدید لینک همیشه در درسترس خواهد بود
+      <i class="fa fa-arrow-circle-left"></i> مشاهده آمار بازدید لینک همیشه در درسترس خواهد بود<br>
+      <i class="fa fa-arrow-circle-left"></i> آیدی لینک را برای مشاهده آمار بازدید در آینده، در اختیار داشته باشید
     </div>
     <%- include("./includes/messages.ejs") %> 
   </div>
@@ -34,7 +35,7 @@
     <div class="row mt-4 mb-2">
       <div class="col">
         <form id="urlForm" action="/stats" method="GET">
-          <label for="urlId" class="form-label">آی دی url:</label>
+          <label for="urlId" class="form-label">آیدی لینک</label>
           <input type="text" class="form-control" id="urlId" name="urlId" readonly value="<%= result.urlId %>"> 
         </form>
       </div>

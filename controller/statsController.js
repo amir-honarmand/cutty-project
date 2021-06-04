@@ -3,49 +3,58 @@ const browserModel = require("../models/seprationModel/browserModel");
 const devicesModel = require("../models/seprationModel/devicesModel");
 const osModel = require("../models/seprationModel/osModel");
 const urlModel = require('../models/urlModel');
+const { get500 } = require("./errorController");
+const {formatDate} = require("../utils/jalai");
 
 //GET stats controller----------------------------
 exports.getStats = async (req, res)=>{
 
-    if(req.query.urlId){
-        const url = await urlModel.findOne({urlId: req.query.urlId});
-        const browsers = await browserModel.findOne({urlId: req.query.urlId});
-        const devices = await devicesModel.findOne({urlId: req.query.urlId});
-        const os = await osModel.findOne({urlId: req.query.urlId});
+    
+    try {
+        let url = null, browsers = null, devices = null, os = null;
+        let createAt = null, totalVisits = null, shortened = null, orginalUrl = null;
+        let date = null;
+
+        if(req.query.urlId){
+            url = await urlModel.findOne({urlId: req.query.urlId});
+            browsers = await browserModel.findOne({urlId: req.query.urlId});
+            devices = await devicesModel.findOne({urlId: req.query.urlId});
+            os = await osModel.findOne({urlId: req.query.urlId});
+            createAt = url.createAt;
+            totalVisits = url.totalVisits;
+            shortened = url.shortened;
+            orginalUrl = url.url;
+            date = formatDate;
+        };
         
         res.render("stats", {
             pageTitle: pageTitle,
             path: "/stats",
-            createAt: url.createAt,
-            totalVisits: url.totalVisits,
+            createAt,
+            totalVisits,
             browsers,
             devices,
             os,
-            shortened: url.shortened
+            shortened,
+            orginalUrl,
+            date
         });
         
-    }else{
-        res.render("stats", {
-            pageTitle: pageTitle,
-            path: "/stats",
-            createAt: 0,
-            totalVisits: 0,
-            browsers: 0,
-            devices: 0,
-            os: 0,
-            shortened: ''
-        });
-
+    } catch (err) {
+        console.log(err);
+        get500(req, res);
     };
+    
 };
 
 //POST stats---------------------------------------
 exports.postStats = async (req, res)=>{
-    const url = await urlModel.findOne({urlId: req.body.urlId});
-    const browsers = await browserModel.findOne({urlId: req.body.urlId});
-    const devices = await devicesModel.findOne({urlId: req.body.urlId});
-    const os = await osModel.findOne({urlId: req.body.urlId});
-    // console.log(totalVisits.totalVisits, browsers, devices, os);
+    try {
+        const url = await urlModel.findOne({urlId: req.body.urlId});
+        const browsers = await browserModel.findOne({urlId: req.body.urlId});
+        const devices = await devicesModel.findOne({urlId: req.body.urlId});
+        const os = await osModel.findOne({urlId: req.body.urlId});
+        // console.log(totalVisits.totalVisits, browsers, devices, os);
 
     res.render("stats", {
         pageTitle: pageTitle,
@@ -55,6 +64,14 @@ exports.postStats = async (req, res)=>{
         browsers,
         devices,
         os,
-        shortened: url.shortened
-    });
+        shortened: url.shortened,
+        date: formatDate,
+        orginalUrl: url.url,
+    });    
+
+    } catch (err) {
+        console.log(err);
+        get500(req, res);
+    };
+    
 };
