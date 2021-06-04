@@ -7,7 +7,7 @@ const urlModel = require('../models/urlModel');
 //GET stats controller----------------------------
 exports.getStats = async (req, res)=>{
 
-    if(req.query){
+    if(req.query.urlId){
         const url = await urlModel.findOne({urlId: req.query.urlId});
         const browsers = await browserModel.findOne({urlId: req.query.urlId});
         const devices = await devicesModel.findOne({urlId: req.query.urlId});
@@ -21,6 +21,7 @@ exports.getStats = async (req, res)=>{
             browsers,
             devices,
             os,
+            shortened: url.shortened
         });
         
     }else{
@@ -32,6 +33,7 @@ exports.getStats = async (req, res)=>{
             browsers: 0,
             devices: 0,
             os: 0,
+            shortened: ''
         });
 
     };
@@ -53,5 +55,6 @@ exports.postStats = async (req, res)=>{
         browsers,
         devices,
         os,
+        shortened: url.shortened
     });
 };
