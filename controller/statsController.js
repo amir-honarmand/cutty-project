@@ -31,6 +31,7 @@ exports.getStats = async (req, res)=>{
         res.render("stats", {
             pageTitle: pageTitle,
             path: "/stats",
+            user: req.user,
             createAt,
             totalVisits,
             browsers,
@@ -61,6 +62,7 @@ exports.postStats = async (req, res)=>{
         res.render("stats", {
             pageTitle: pageTitle,
             path: "/stats",
+            user: req.user,
             createAt: url.createAt,
             totalVisits: url.totalVisits,
             browsers,
