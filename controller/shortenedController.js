@@ -119,7 +119,7 @@ exports.getRedirect = async (req, res) => {
       }else if(req.useragent.isSafari){
         await browserModel.updateOne({urlId: urlDb.urlId}, {safari: browsers.safari + 1});
 
-      }else if(req.useragent.isEdge){
+      }else if(req.useragent.isEdge || req.useragent.isIE || req.useragent.isIECompatibilityMode){
         await browserModel.updateOne({urlId: urlDb.urlId}, {edge: browsers.edge + 1});
       };
 
@@ -136,9 +136,9 @@ exports.getRedirect = async (req, res) => {
         await osModel.updateOne({urlId: urlDb.urlId}, {windows: os.windows + 1});
 
       }else if(req.useragent.isMac){
-        // await osModel.updateOne({urlId: urlDb.urlId}, {mac: os.mac + 1});
+        await osModel.updateOne({urlId: urlDb.urlId}, {mac: os.mac + 1});
 
-      }else if(req.useragent.isMac || req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
+      }else if(req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
         await osModel.updateOne({urlId: urlDb.urlId}, {ios: os.ios + 1});
         
       }else if(req.useragent.isAndroid || req.useragent.isAndroidNative){
@@ -146,7 +146,7 @@ exports.getRedirect = async (req, res) => {
         
       }
 
-      // console.log("user agnet ", req.useragent);
+      console.log("user agnet ", req.useragent);
       
       res.redirect(urlDb.url);
     } else {
