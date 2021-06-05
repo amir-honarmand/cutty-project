@@ -136,9 +136,9 @@ exports.getRedirect = async (req, res) => {
         await osModel.updateOne({urlId: urlDb.urlId}, {windows: os.windows + 1});
 
       }else if(req.useragent.isMac){
-        await osModel.updateOne({urlId: urlDb.urlId}, {mac: os.mac + 1});
+        // await osModel.updateOne({urlId: urlDb.urlId}, {mac: os.mac + 1});
 
-      }else if(req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
+      }else if(req.useragent.isMac || req.useragent.isiPad || req.useragent.isiPod || req.useragent.isiPhone || req.useragent.isiPhoneNative){
         await osModel.updateOne({urlId: urlDb.urlId}, {ios: os.ios + 1});
         
       }else if(req.useragent.isAndroid || req.useragent.isAndroidNative){
