@@ -1,7 +1,7 @@
 <div id="edit-url" class="bg-white col-xl-8 col-lg-7 col-md-6 col-12 ml-2 row rounded shadow mt-4">
   <!-- <a href="#edit-url"></a> -->
   <div class="w-100 mx-2 my-5">
-    <h4 class="mb-3">ویرایش آدرس</h4>
+    <!-- <h4 class="mb-3">ویرایش آدرس</h4> -->
     <form class="needs-validation" action="/shortened" method="POST" autocomplete="off">
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col col-md-9 col-lg-8">
@@ -17,6 +17,19 @@
           
         <div class="col col-md-3 col-lg-2 d-flex flex-column justify-content-end mt-2">
           <button title="کپی کنید" onclick="copyFunc(document.getElementById('shortened').innerText)" type="button" id="btnCopy" class="btn shadow btn-primary"><i class="fa fa-copy"></i></button>
+        </div>
+      </div>
+
+      <div class="row mt-4 mb-2">
+        <div class="col-sm-9 col-md-5 col-lg-6">
+          <form id="urlForm" action="/stats" method="GET">
+            <label for="urlId" class="form-label">آیدی لینک</label>
+            <% if (getUrl) { %>
+              <input type="text" class="form-control" id="urlId" name="urlId" readonly value="<%= getUrl.urlId %>"> 
+              <% }else{ %>
+                <input type="text" class="form-control" id="urlId" name="urlId" readonly value=""> 
+            <%}%>
+          </form>
         </div>
       </div>
       

@@ -42,7 +42,10 @@
                                 <% if(urls[i]){ %>
                                     <% let url = urls[i] %>
                                     <li class="list-inline-item mb-2 d-block">
-                                        <i class="fa fa-link ml-2"></i><a class="d-inline" href="/dashboard/<%= url._id %>"><%= url.shortened %></a>
+                                        <div class="border border-secondary rounded p-3">
+                                            <i class="fa fa-link ml-2"></i><a class="d-inline" href="/dashboard/<%= url._id %>"><%= url.shortened %></a><br>
+                                            <i class="fa fa-bar-chart-o ml-2 mt-2"></i><a class="d-inline mt-2 small font-weight-bold text-muted" href="/stats?urlId=<%= url.urlId %>">آمار بازدید</a>
+                                        </div>
                                     </li>
                                 <% } %>
                             <% } %>
