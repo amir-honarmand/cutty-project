@@ -12,7 +12,7 @@ exports.getStats = async (req, res)=>{
     
     try {
         let url = null, browsers = null, devices = null, os = null;
-        let createAt = null, totalVisits = null, shortened = null, orginalUrl = null;
+        let createAt = null, totalVisits = null, shortened = null, orginalUrl = null, urlId = null;
         let date = null;
 
         if(req.query.urlId){
@@ -23,6 +23,7 @@ exports.getStats = async (req, res)=>{
             createAt = url.createAt;
             totalVisits = url.totalVisits;
             shortened = url.shortened;
+            urlId = url.urlId;
             orginalUrl = url.url;
             date = formatDate;
         };
@@ -37,6 +38,7 @@ exports.getStats = async (req, res)=>{
             os,
             shortened,
             orginalUrl,
+            urlId,
             date
         });
         
@@ -56,18 +58,19 @@ exports.postStats = async (req, res)=>{
         const os = await osModel.findOne({urlId: req.body.urlId});
         // console.log(totalVisits.totalVisits, browsers, devices, os);
 
-    res.render("stats", {
-        pageTitle: pageTitle,
-        path: "/stats",
-        createAt: url.createAt,
-        totalVisits: url.totalVisits,
-        browsers,
-        devices,
-        os,
-        shortened: url.shortened,
-        date: formatDate,
-        orginalUrl: url.url,
-    });    
+        res.render("stats", {
+            pageTitle: pageTitle,
+            path: "/stats",
+            createAt: url.createAt,
+            totalVisits: url.totalVisits,
+            browsers,
+            devices,
+            os,
+            shortened: url.shortened,
+            date: formatDate,
+            orginalUrl: url.url,
+            urlId: url.urlId
+        });    
 
     } catch (err) {
         console.log(err);

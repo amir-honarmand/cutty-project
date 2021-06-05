@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col" style="direction: ltr;">
             <form action="/stats" method="POST" class="row justify-content-center">
-                <input type="text" name="urlId" class="url_id p-2 shadow rounded border border-primary" placeholder="DMezYtG...">
+                <input type="text" name="urlId" value="<%= urlId ? urlId : '' %>" required class="url_id p-2 shadow rounded border border-primary" placeholder="DMezYtG...">
                 <button class="btn btn-primary shadow mr-1" type="submit">آمار بازدید</button>
             </form>
 

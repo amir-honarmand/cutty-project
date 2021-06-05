@@ -42,6 +42,7 @@ const urlSchema = new mongoose.Schema({
   urlId: {
     type: String,
     unique: true,
+    trim: true,
   },
   
 });
