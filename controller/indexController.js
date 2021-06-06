@@ -3,7 +3,8 @@ const browserModel = require('../models/seprationModel/browserModel');
 const devicesModel = require('../models/seprationModel/devicesModel');
 const osModel = require('../models/seprationModel/osModel');
 
-const { nanoid } = require("nanoid");
+const { customAlphabet } = require("nanoid");
+const {alphanumeric} = require('nanoid-dictionary');
 const { get500 } = require("./errorController");
 const { pageTitle } = require("../config/globalVar");
 
@@ -29,12 +30,12 @@ exports.createCutLink = async (req, res) => {
   try {
     await urlModel.urlValidation(req.body);
 
-    let myUrl = `${process.env.MY_URL}${nanoid(5)}`;
-    const urlId = nanoid(10);
+    const nanoid = customAlphabet(alphanumeric, 5);
+    
+    let myUrl = `${process.env.MY_URL}${nanoid()}`;
 
-    // const myUrl = `${myUrlArr[0]}${myUrlArr[1]}${myUrlArr[2]}`;
-    // let randomId = nanoid(10);
-    // myUrl.push(nanoid(10));
+    const nanoid_urlid = customAlphabet(alphanumeric ,10);
+    const urlId = nanoid_urlid();
 
     if('user' in req){
       user = req.user.id;
@@ -56,7 +57,8 @@ exports.createCutLink = async (req, res) => {
           
           num++;
   
-          myUrl = `${process.env.MY_URL}${nanoid(num)}`;
+          const nanoid_sum = customAlphabet(alphanumeric ,num);
+          myUrl = `${process.env.MY_URL}${nanoid_sum()}`;
           const isFind = await urlModel.findOne({shortened: myUrl});
           if (!isFind) {
   
@@ -84,8 +86,6 @@ exports.createCutLink = async (req, res) => {
         await devicesModel.create({urlId: result.urlId});
         await osModel.create({urlId: result.urlId});
         
-        console.log(urlId);
-        
         req.session.shortened = myUrl;
         console.log("in index url:", req.session.shortened);
         return res.redirect("/shortened");
@@ -93,11 +93,9 @@ exports.createCutLink = async (req, res) => {
         
       if(err && err.code !== 11000) {
         console.error("line 66 Error",err);
-        return;
+        throw err;
       }
     });
-
-
 
   } catch (err) {
     
