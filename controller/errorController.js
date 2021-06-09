@@ -11,3 +11,15 @@ exports.get500 = (req, res)=>{
         path: "/404"
     });
 };
+
+//errorHandling in home page
+exports.errorsIndex = (req, res, err)=>{
+    if(err.errors){
+        const error = err.errors.toString();
+        req.flash('error_msg', error);
+        return res.redirect("/");
+    };
+
+    req.flash('error_msg', 'مشکلی پیش آمده دوباره تلاش کنید');
+    res.redirect("/");
+};

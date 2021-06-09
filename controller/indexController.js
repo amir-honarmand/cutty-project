@@ -6,27 +6,28 @@ const osModel = require('../models/seprationModel/osModel');
 const { customAlphabet } = require("nanoid");
 const {alphanumeric} = require('nanoid-dictionary');
 const { get500 } = require("./errorController");
-const { pageTitle } = require("../config/globalVar");
+const { pageTitle} = require("../config/globalVar");
+const { errorsIndex } = require("./errorController");
 
 
-// GET request
+//* GET request
 exports.getIndex = (req, res) => {
   res.set(
     "Cache-Control",
     "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
+
   res.render("index", {
     pageTitle: pageTitle,
     path: "/index",
     user: req.user,
-    errors: [],
+    errorsIndex: req.flash('error_msg') || undefined,
   });
 };
 
-// POST request
+//* POST request
 exports.createCutLink = async (req, res) => {
   let user;
-
   try {
     await urlModel.urlValidation(req.body);
 
@@ -60,8 +61,8 @@ exports.createCutLink = async (req, res) => {
           const nanoid_sum = customAlphabet(alphanumeric ,num);
           myUrl = `${process.env.MY_URL}${nanoid_sum()}`;
           const isFind = await urlModel.findOne({shortened: myUrl});
+
           if (!isFind) {
-  
             const result = await urlModel.create({
               url: req.body.url,
               shortened: myUrl,
@@ -76,9 +77,7 @@ exports.createCutLink = async (req, res) => {
             req.session.shortened = myUrl;
             console.log("in index url:", req.session.shortened);
             return res.redirect("/shortened");    
-            
           };
-          
         };
 
       } else if(result) {
@@ -92,19 +91,13 @@ exports.createCutLink = async (req, res) => {
       }
         
       if(err && err.code !== 11000) {
-        console.error("line 66 Error",err);
+        console.error("Error",err);
         throw err;
       }
     });
 
   } catch (err) {
-    
-    console.log("erro catch",err);
-    res.render("index", {
-      pageTitle: pageTitle,
-      path: "/index",
-      user: req.user,
-      errors: err.errors || ["مشکلی پیش آمده دوباره تلاش کنید"],
-    });
+    console.error("erro catch",err);
+    errorsIndex(req, res, err);
   }
 };
