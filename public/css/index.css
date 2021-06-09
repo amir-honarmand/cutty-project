@@ -11,7 +11,7 @@ h6 {
 div.masthead {
   position: relative;
   background-color: #343a40;
-  background: url("../img/home.jpg") no-repeat center center;
+  background: url("../img/home2.jpg") no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
@@ -19,12 +19,12 @@ div.masthead {
 
 div.masthead .overlay {
   position: absolute;
-  background-color: #fff;
+  background-color: rgb(10, 10, 10);
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 div.masthead h1 {
@@ -34,7 +34,7 @@ div.masthead h1 {
 
 @media (min-width: 768px) {
   div.masthead {
-    padding-top: 12rem;
+    padding-top: 14rem;
     padding-bottom: 12rem;
   }
   div.masthead h1 {

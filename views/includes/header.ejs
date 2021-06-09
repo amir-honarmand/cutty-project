@@ -50,7 +50,7 @@
 <body class="rtl bg-light d-flex flex-column min-vh-100">
   <!-- Navigation -->
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="nav_style navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
       <div class="d-flex align-items-center">
         <img src="/img/logo.png" width="45" class="shadow mr-2"></img><a class="navbar-brand ml-1" href="/">کوتاه کننده لینک</a>
@@ -64,10 +64,10 @@
         </div>
         <ul class="navbar-nav ml-md-auto mb-md-2 mb-md-0 pl-0">
           <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
-            <a class="btn btn-outline-light btn-sm <%= path === '/index' ? 'active' : '' %>" aria-current="page" href="/">خانه</a>
+            <a class="btn btn-link text-light btn-sm <%= path === '/index' ? 'active' : '' %>" aria-current="page" href="/">خانه</a>
           </li>
           <li class="nav-item ml-md-0 pr-md-1 mt-2 mt-md-0">
-            <a class="btn btn-outline-light btn-sm <%= path === '/stats' ? 'active' : '' %>" aria-current="page" href="/stats">آمار بازدید</a>
+            <a class="btn btn-link text-light btn-sm <%= path === '/stats' ? 'active' : '' %>" aria-current="page" href="/stats">آمار بازدید</a>
           </li>
 
           <% if (typeof user !== "undefined") { %>
@@ -78,7 +78,7 @@
               / داشبورد</a>
             </li>
             <li class="nav-item ml-md-0 mt-2 mt-md-0">
-              <a class="btn btn-outline-danger btn-sm" href="/dashboard/logout">خروج</a>
+              <a class="btn btn-danger btn-sm" href="/dashboard/logout">خروج</a>
             </li>
                 
           <% }else{ %>
